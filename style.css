@@ -1,0 +1,17 @@
+.responsive_container_1{
+    max-width: 30rem;
+    width: 100%;
+    margin: auto;
+}
+
+.responsive_container_2{
+    max-width: 75rem;
+    width: 100%;
+    margin: auto;
+}
+
+.navbar_element_1{
+    max-width: 100px;
+    width: 100%;
+    margin: auto;
+}
