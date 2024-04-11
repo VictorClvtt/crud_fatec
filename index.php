@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <title>Olá mundo</title>
+    <title>Logar</title>
 </head>
 <body class="d-flex align-items-center justify-content-between bg-dark-subtle vh-100 vw-100 px-3">
     <form action="login_test.php" method="POST" style="transition: height 0.3s ease-in-out;" class="d-flex flex-column border border-primary rounded-4 p-3 bg-light responsive_container_1">

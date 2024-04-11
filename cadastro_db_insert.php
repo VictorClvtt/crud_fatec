@@ -6,14 +6,15 @@
         
         // Prepare data
         $nome = $_POST["nome"];
+        $genero = $_POST["genero"];
         $ddd = $_POST["ddd"];
         $telefone = $_POST["telefone"];
         $email = $_POST["email"];
         $senha = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
         // Prepare and execute insert query for usuario table
-        $stmt_usuario = $conn->prepare("INSERT INTO usuario (nome, email, senha) VALUES (?, ?, ?)");
-        $stmt_usuario->bind_param("sss", $nome, $email, $senha);
+        $stmt_usuario = $conn->prepare("INSERT INTO usuario (nome, genero, email, senha) VALUES (?, ?, ?, ?)");
+        $stmt_usuario->bind_param("ssss", $nome, $genero, $email, $senha);
         $stmt_usuario->execute();
 
         // Get the inserted user id

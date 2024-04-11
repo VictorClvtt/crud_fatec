@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <title>Olá mundo</title>
+    <title>Criar conta</title>
 </head>
 <body class="d-flex align-items-center justify-content-between bg-dark-subtle vh-100 vw-100 px-3">
     <form action="cadastro_db_insert.php" method="POST" class="d-flex flex-column border border-primary rounded-4 p-3 bg-light responsive_container_1">
@@ -15,8 +15,12 @@
             <input name="nome" type="text" class="form-control border border-primary" id="exampleInputEmail1" aria-describedby="emailHelp">
         </div>
         <div class="mb-2">
-            <label for="exampleInputEmail1" class="form-label mb-1">Gênero:</label>
-            <input name="genero" type="text" class="form-control border border-primary" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label for="genero" class="form-label mb-1">Gênero:</label>
+            <select name="genero" class="form-select border border-primary">
+                <option selected value="Não informado">Não informar</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+            </select> 
         </div>
         <div class="mb-2">
             <label for="" class="form-label mb-1">Telefone:</label>

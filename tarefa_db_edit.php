@@ -7,9 +7,10 @@
     $tipo = $_POST["tipo"];
     $prazo = $_POST["prazo"];
     $importancia = $_POST["importancia"];
+    $idtarefa = $_POST["idtarefa"];
 
-    $stmt_tarefa = $conn->prepare("INSERT INTO tarefa (titulo, descricao, tipo, prazo, importancia, usuario_idusuario) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt_tarefa->bind_param("ssssss", $titulo, $descricao, $tipo, $prazo, $importancia, $_SESSION["user_id"]);
+    $stmt_tarefa = $conn->prepare("UPDATE tarefa SET titulo=?, descricao=?, tipo=?, prazo=?, importancia=? WHERE idtarefa=?");
+    $stmt_tarefa->bind_param("sssssi", $titulo, $descricao, $tipo, $prazo, $importancia, $_POST["idtarefa"]);
     $stmt_tarefa->execute();
 
     header("Location: sistema_tarefas.php");
