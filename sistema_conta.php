@@ -11,6 +11,13 @@
         $result = $stmt->get_result();
     
         $user = $result->fetch_assoc();
+
+        $tel = $conn->prepare("SELECT * FROM telefone WHERE usuario_idusuario = ?");
+        $tel->bind_param("s", $id);
+        $tel->execute();
+        $result_tel = $tel->get_result();
+    
+        $user_tel = $result_tel->fetch_assoc();
     }else{
         header("Location: index.php");
         exit;
@@ -70,6 +77,12 @@
             <p class="fs-5 fw-bold m-0">Gênero:</p>
             <p class='fs-5 text-dark-emphasis m-0'>
                 <?php echo $user["genero"]?>
+            </p>
+        </div>
+        <div class="d-flex gap-2">
+            <p class="fs-5 fw-bold m-0">Telefone:</p>
+            <p class='fs-5 text-dark-emphasis m-0'>
+                <?php echo $user_tel["num_ddd"] . $user_tel["num_tel"]?>
             </p>
         </div>
         <div class="d-flex gap-2 border-bottom border-dark-subtle mb-3">

@@ -117,28 +117,36 @@
             while ($tarefa = $result->fetch_assoc()) {
                 $i += 1;
 
-                echo '<div class="d-flex border-bottom border-dark-subtle align-content-center align-items-center px-4 py-1 bg-light task_container">
-                <p class="bg-dark-subtle border border-dark-subtle m-0 px-2 py-1 rounded-4">' . $i . '</p>
-                <div class="container-fluid">
-                    <p class="m-0 fw-bold">' . $tarefa["titulo"] . '</p>
-                    <p class="m-0 text-dark-emphasis">' . $tarefa["descricao"] . '</p>
-                </div>
-                <div class="px-2 border-end border-start border-dark-subtle">
-                    <p class="m-0 fw-bold">Tipo:</p>
-                    <p class="m-0 text-nowrap">' . $tarefa["tipo"] . '</p>
-                </div>
-                <div class="px-2 border-end border-dark-subtle">
-                    <p class="m-0 fw-bold">Prazo:</p>
-                    <p class="m-0 text-nowrap">' . $tarefa["prazo"] . '</p>
-                </div>
-                <div class="px-2 me-4 border-end border-dark-subtle">
-                    <p class="m-0 fw-bold">Importância:</p>
-                    <p class="m-0 text-nowrap">' . $tarefa["importancia"] . '</p>
-                </div>
+                $idtarefa = $tarefa["idtarefa"];
+                $titulo = $tarefa["titulo"];
+                $desc = $tarefa["descricao"];
+                $tipo = $tarefa["tipo"];
+                $prazo = $tarefa["prazo"];
+                $imp = $tarefa["importancia"];
 
-                <button onclick="insertId(' . $tarefa["idtarefa"] . ')" type="button" data-bs-toggle="modal" data-bs-target="#editarTarefa" class="bg-info-subtle text-black border border-info rounded-3 me-2 px-1 text-decoration-none">Editar</button>
-                <a href="tarefa_db_delete.php?idusuario=' . $tarefa["usuario_idusuario"] . '&idtarefa=' . $tarefa["idtarefa"] . '" class="bg-danger text-white border border-danger-subtle rounded-3 px-1 text-decoration-none">Deletar</a>
-            </div>';
+                echo "<div class='d-flex border-bottom border-dark-subtle align-content-center align-items-center px-4 py-1 bg-light task_container'>
+                        <p class='bg-dark-subtle border border-dark-subtle m-0 px-2 py-1 rounded-4'>$i</p>
+                        <div class='container-fluid'>
+                            <p class='m-0 fw-bold'>$titulo</p>
+                            <p class='m-0 text-dark-emphasis'>$desc</p>
+                        </div>
+                        <div class='px-2 border-end border-start border-dark-subtle'>
+                            <p class='m-0 fw-bold'>Tipo:</p>
+                            <p class='m-0 text-nowrap'>$tipo</p>
+                        </div>
+                        <div class='px-2 border-end border-dark-subtle'>
+                            <p class='m-0 fw-bold'>Prazo:</p>
+                            <p class='m-0 text-nowrap'>$prazo</p>
+                        </div>
+                        <div class='px-2 me-4 border-end border-dark-subtle'>
+                            <p class='m-0 fw-bold'>Importância:</p>
+                            <p class='m-0 text-nowrap'>$imp</p>
+                        </div>
+
+                        <button onclick='insertId($idtarefa, \"$titulo\", \"$desc\", \"$tipo\", \"$prazo\", \"$imp\")' type='button' data-bs-toggle='modal' data-bs-target='#editarTarefa' class='bg-info-subtle text-black border border-info rounded-3 me-2 px-1 text-decoration-none'>Editar</button>
+                        <a href='tarefa_db_delete.php?idusuario=" . $tarefa['usuario_idusuario'] . "&idtarefa=" . $tarefa['idtarefa'] . "' class='bg-danger text-white border border-danger-subtle rounded-3 px-1 text-decoration-none'>Deletar</a>
+                    </div>";
+
             }
         ?>
 
@@ -155,23 +163,23 @@
                         <div class="d-flex flex-column gap-2">
                             <div class="d-flex flex-column">
                                 <label for="titulo" class="mb-0 form-label">Título:</label>
-                                <input required type="text" name="titulo" class="form-control border border-primary">    
+                                <input required type="text" id="titulo" value="" name="titulo" class="form-control border border-primary">    
                             </div>
                             <div class="d-flex flex-column">
                                 <label for="descricao" class="mb-0 form-label">Descrição:</label>
-                                <input required type="text" name="descricao" class="form-control border border-primary">    
+                                <input required type="text" id="desc" name="descricao" class="form-control border border-primary">    
                             </div>
                             <div class="d-flex flex-column">
                                 <label for="tipo" class="mb-0 form-label">Tipo:</label>
-                                <input required type="text" name="tipo" class="form-control border border-primary">    
+                                <input required type="text" id="tipo" name="tipo" class="form-control border border-primary">    
                             </div>
                             <div class="d-flex flex-column">
                                 <label for="prazo" class="mb-0 form-label">Prazo:</label>
-                                <input required type="date" min="0" name="prazo" class="form-control border border-primary">    
+                                <input required type="date" min="0" id="prazo" name="prazo" class="form-control border border-primary">    
                             </div> 
                             <div class="d-flex flex-column">
                                 <label for="importancia" class="mb-0 form-label">Importância:</label>
-                                <select required name="importancia" id="" class="form-select border border-primary">
+                                <select required name="importancia" id="imp" class="form-select border border-primary">
                                     <option selected value="">Defina a importância da tarefa</option>
                                     <option value="Pouca">Pouca</option>
                                     <option value="Média">Média</option>
