@@ -1,0 +1,157 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Tempo de geração: 12/04/2024 às 16:37
+-- Versão do servidor: 11.3.2-MariaDB
+-- Versão do PHP: 8.3.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Banco de dados: `projeto_crud`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tarefa`
+--
+
+CREATE TABLE `tarefa` (
+  `idtarefa` int(11) NOT NULL,
+  `titulo` varchar(50) DEFAULT NULL,
+  `descricao` varchar(200) DEFAULT NULL,
+  `tipo` varchar(25) DEFAULT NULL,
+  `prazo` date DEFAULT NULL,
+  `importancia` varchar(5) DEFAULT NULL,
+  `usuario_idusuario` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `tarefa`
+--
+
+INSERT INTO `tarefa` (`idtarefa`, `titulo`, `descricao`, `tipo`, `prazo`, `importancia`, `usuario_idusuario`) VALUES
+(15, 'Caminhada', 'Definir trajeto e caminhar por meia hora', 'Exercício', '2024-04-12', 'Muita', 10),
+(16, 'Fazer trabalho de pweb', 'Estudar as tecnologias necessárias e realizar o trabalho', 'Faculdade', '2024-04-30', 'Média', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `telefone`
+--
+
+CREATE TABLE `telefone` (
+  `idtelefone` int(11) NOT NULL,
+  `num_ddd` varchar(5) DEFAULT NULL,
+  `num_tel` varchar(15) DEFAULT NULL,
+  `usuario_idusuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `telefone`
+--
+
+INSERT INTO `telefone` (`idtelefone`, `num_ddd`, `num_tel`, `usuario_idusuario`) VALUES
+(7, '14', '396359836', 7),
+(10, '14', '453785325', 10);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `idusuario` int(11) NOT NULL,
+  `nome` varchar(75) DEFAULT NULL,
+  `genero` varchar(10) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `senha` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `usuario`
+--
+
+INSERT INTO `usuario` (`idusuario`, `nome`, `genero`, `email`, `senha`) VALUES
+(7, 'João', 'Masculino', 'joao@teste.com', '$2y$10$IYohk4TP5b8/biG/FMUgOWucxHsPjD.dnyWsHiOfI7/UY/PTlrLO'),
+(10, 'Victor', 'Masculino', 'victor@teste.com', '$2y$10$aMngrsvQ.cVC6Xcfh0dcCOvCK1SdReBcKZDOKinkZSc43uMyDQRa');
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices de tabela `tarefa`
+--
+ALTER TABLE `tarefa`
+  ADD PRIMARY KEY (`idtarefa`),
+  ADD KEY `fk_tarefa_usuario_idx` (`usuario_idusuario`);
+
+--
+-- Índices de tabela `telefone`
+--
+ALTER TABLE `telefone`
+  ADD PRIMARY KEY (`idtelefone`),
+  ADD KEY `fk_telefone_usuario1_idx` (`usuario_idusuario`);
+
+--
+-- Índices de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`idusuario`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `tarefa`
+--
+ALTER TABLE `tarefa`
+  MODIFY `idtarefa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT de tabela `telefone`
+--
+ALTER TABLE `telefone`
+  MODIFY `idtelefone` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `tarefa`
+--
+ALTER TABLE `tarefa`
+  ADD CONSTRAINT `fk_tarefa_usuario` FOREIGN KEY (`usuario_idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para tabelas `telefone`
+--
+ALTER TABLE `telefone`
+  ADD CONSTRAINT `fk_telefone_usuario1` FOREIGN KEY (`usuario_idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+

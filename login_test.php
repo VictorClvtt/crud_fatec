@@ -4,7 +4,6 @@
     $email = $_POST["email"];
     $senha = $_POST["password"];
 
-    // Prepare and bind SQL statement to prevent SQL injection
     $stmt = $conn->prepare("SELECT * FROM usuario WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();

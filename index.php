@@ -20,16 +20,15 @@
         </div>
         <button type="submit" class="btn btn-primary m-auto container-fluid">Login</button>
         
-            <?php
-                session_start();
+        <?php
+            session_start();
 
-                if(isset($_SESSION["msg"])){
-                    echo "<p class='m-0 mx-auto text-danger fw-bold fs-5' style='padding-top: 1rem; padding-bottom: 0.5rem; height: 54px;' id='msg'>" . $_SESSION["msg"] . "</p>";
-                    unset($_SESSION["msg"]);    
-                }
-
-                
-            ?>
+            if(isset($_SESSION["msg"])){
+                echo "<p class='m-0 mx-auto text-danger fw-bold fs-5' style='padding-top: 1rem; padding-bottom: 0.5rem; height: 54px;' id='msg'>" . $_SESSION["msg"] . "</p>";
+                unset($_SESSION["msg"]);    
+            }
+            
+        ?>
 
         <div id="emailHelp" class="d-flex form-text gap-1">Ainda não tem uma conta? <a href="cadastro.php" class="text-primary fw-bold m-0">Cadastre-se</a></div>
     </form>
